@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cortive - Calm Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            font-family: 'Inter', sans-serif;
+            background-color: #f2e8dc;
+        }
+        .cortive-landing-page {
+            --cortive-bg: #f2e8dc;
+            --cortive-surface: #faf3ea;
+            --cortive-text-primary: #2f2f2f;
+            --cortive-text-secondary: #4b4b4b;
+            --cortive-accent: #d45f04;
+            --cortive-accent-hover: #b44c03;
+        }
+    </style>
+</head>
+<body class="bg-[var(--cortive-bg)] text-[var(--cortive-text-primary)] antialiased">
+
+    <div class="cortive-landing-page">
+
+        <header class="sticky top-0 z-50 bg-[var(--cortive-bg)]/80 backdrop-blur-md">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <h1 class="text-3xl font-bold text-[var(--cortive-text-primary)]">Cortive</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-[var(--cortive-text-secondary)] hover:text-[var(--cortive-accent)] transition-colors">Features</a>
+                    <a href="#pricing" class="text-[var(--cortive-text-secondary)] hover:text-[var(--cortive-accent)] transition-colors">Pricing</a>
+                    <a href="#" class="text-[var(--cortive-text-secondary)] hover:text-[var(--cortive-accent)] transition-colors">Blog</a>
+                </div>
+                <a href="#cta" class="bg-[var(--cortive-accent)] text-white font-semibold px-5 py-2 rounded-xl hover:bg-[var(--cortive-accent-hover)] transition-colors shadow-sm">Get Started</a>
+            </nav>
+        </header>
+
+        <section class="text-center py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <p class="text-lg md:text-xl text-[var(--cortive-text-secondary)] max-w-3xl mx-auto mb-4">We left filing cabinets behind, only to recreate the same chaos in our digital world.</p>
+                <h2 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-4">Stop Organizing. Start Remembering.</h2>
+                <p class="text-lg md:text-xl text-[var(--cortive-text-secondary)] max-w-3xl mx-auto mb-8">Cortive is your private digital cortex. It turns the chaos of scattered notes, links, and files into a unified, intelligent library you can access instantly—from anywhere on your computer.</p>
+                <a href="#cta" class="bg-[var(--cortive-accent)] text-white font-bold px-8 py-4 rounded-2xl text-lg hover:bg-[var(--cortive-accent-hover)] transition-colors shadow-md">Join the Founder's Waitlist</a>
+                <p class="text-sm text-[var(--cortive-text-secondary)]/70 mt-4">Lifetime Deal for the First 100 Charter Members</p>
+            </div>
+        </section>
+
+        <section class="pb-16 pt-10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                     <h3 class="text-3xl font-bold mb-4">Your Knowledge is Your Greatest Asset. Your Tools are Not.</h3>
+                     <p class="text-lg text-[var(--cortive-text-secondary)] max-w-3xl mx-auto">Your best ideas are scattered across a dozen apps and a hundred browser tabs. Finding anything requires a painful process of "digital archaeology," destroying your focus and creating a constant sense of information overload.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="rounded-2xl shadow-md bg-[var(--cortive-surface)] p-6 text-center">
+                        <h3 class="text-xl font-semibold mb-2 text-[var(--cortive-accent)]">The Fear of Forgetting</h3>
+                        <p class="text-sm text-[var(--cortive-text-secondary)]">The dread that a valuable insight you saw last week is now lost forever in the digital ether.</p>
+                    </div>
+                    <div class="rounded-2xl shadow-md bg-[var(--cortive-surface)] p-6 text-center">
+                        <h3 class="text-xl font-semibold mb-2 text-[var(--cortive-accent)]">The Friction of Capture</h3>
+                        <p class="text-sm text-[var(--cortive-text-secondary)]">The frustration of knowing you should save something, but the act of doing so breaks your state of flow.</p>
+                    </div>
+                    <div class="rounded-2xl shadow-md bg-[var(--cortive-surface)] p-6 text-center">
+                        <h3 class="text-xl font-semibold mb-2 text-[var(--cortive-accent)]">The Burden of Organization</h3>
+                        <p class="text-sm text-[var(--cortive-text-secondary)]">The exhaustion of trying to maintain a perfect system of tags and folders, only to have it descend into chaos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h3 class="text-3xl font-bold mb-4">The Digital Cortex You Deserve.</h3>
+                <p class="text-lg text-[var(--cortive-text-secondary)] max-w-3xl mx-auto mb-12">Cortive acts as an ambient layer for your mind. It intelligently captures your context and makes your personal knowledge instantly accessible, without the manual labor of organization.</p>
+                
+                <div class="max-w-4xl mx-auto bg-gray-900 rounded-2xl shadow-2xl aspect-video flex items-center justify-center border-4 border-gray-300">
+                    <p class="text-white text-2xl font-semibold">[ Your Killer 60-Second Demo Video Here ]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-16 bg-[var(--cortive-surface)] scroll-mt-20">
+            <div class="container mx-auto px-6">
+                <h3 class="text-3xl font-bold text-center mb-16">How Cortive Works</h3>
+                <div class="grid md:grid-cols-3 gap-12 text-center max-w-6xl mx-auto">
+                    <div>
+                        <div class="text-5xl font-bold text-[var(--cortive-accent)] mb-4">1</div>
+                        <h4 class="text-xl font-semibold mb-2">Frictionless Capture</h4>
+                        <p class="text-[var(--cortive-text-secondary)]">Instantly save anything from your browser, clipboard, or desktop with a single hotkey. The capture is instant and never breaks your flow.</p>
+                    </div>
+                    <div>
+                        <div class="text-5xl font-bold text-[var(--cortive-accent)] mb-4">2</div>
+                        <h4 class="text-xl font-semibold mb-2">Private & Automatic Indexing</h4>
+                        <p class="text-[var(--cortive-text-secondary)]">All your captured knowledge is processed and stored **100% locally** on your device. We never see your data. Cortive automatically indexes everything for you.</p>
+                    </div>
+                    <div>
+                        <div class="text-5xl font-bold text-[var(--cortive-accent)] mb-4">3</div>
+                        <h4 class="text-xl font-semibold mb-2">Instant Recall</h4>
+                        <p class="text-[var(--cortive-text-secondary)]">Search the full text of everything you've ever captured in a clean, beautiful library. Find what you need in seconds, not minutes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="py-20 scroll-mt-20">
+            <div class="container mx-auto px-6 text-center">
+                <h3 class="text-3xl font-bold mb-4">Find the Plan for Your Brain</h3>
+                <p class="text-lg text-[var(--cortive-text-secondary)] max-w-2xl mx-auto mb-12">Start for free and upgrade when you're ready to build a permanent, lifelong memory.</p>
+                <div class="flex flex-col md:flex-row justify-center items-stretch gap-8 max-w-4xl mx-auto">
+                    
+                    <div class="w-full md:w-1/2 bg-[var(--cortive-surface)] rounded-2xl p-8 flex flex-col shadow-md">
+                        <h4 class="text-2xl font-semibold mb-2">Fleeting Brain</h4>
+                        <p class="text-[var(--cortive-text-secondary)] mb-6">Perfect for capturing ideas in the moment.</p>
+                        <p class="text-5xl font-bold mb-6">Free</p>
+                        <ul class="text-left space-y-3 mb-8 text-[var(--cortive-text-secondary)]">
+                            <li class="flex items-center"><span class="text-green-600 mr-3">&#10003;</span> Browser Extension</li>
+                            <li class="flex items-center"><span class="text-green-600 mr-3">&#10003;</span> Frictionless Web Capture</li>
+                            <li class="flex items-center"><span class="text-green-600 mr-3">&#10003;</span> Local Storage & Processing</li>
+                            <li class="flex items-center"><span class="text-green-600 mr-3">&#10003;</span> Full-Text Search</li>
+                            <li class="flex items-center"><span class="text-[var(--cortive-text-secondary)]/50 mr-3">&#10007;</span> Captures expire after 30 days</li>
+                        </ul>
+                        <a href="#" class="mt-auto w-full bg-white text-[var(--cortive-text-primary)] font-semibold py-3 rounded-xl hover:bg-gray-100 transition-colors border border-gray-200">Download for Free</a>
+                    </div>
+
+                    <div class="w-full md:w-1/2 bg-[var(--cortive-text-primary)] text-white rounded-2xl p-8 flex flex-col relative shadow-lg">
+                        <p class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-[var(--cortive-accent)] text-white text-sm font-semibold px-3 py-1 rounded-full">Coming Soon</p>
+                        <h4 class="text-2xl font-semibold mb-2">Permanent Brain</h4>
+                        <p class="text-gray-300 mb-6">The ultimate tool for serious knowledge work.</p>
+                        <p class="text-5xl font-bold mb-6">$15 <span class="text-lg font-normal text-gray-400">/ month</span></p>
+                        <ul class="text-left space-y-3 mb-8 text-gray-300">
+                            <li class="flex items-center"><span class="text-[var(--cortive-accent)] mr-3">&#10003;</span> **Everything in Free, plus...**</li>
+                            <li class="flex items-center"><span class="text-[var(--cortive-accent)] mr-3">&#10003;</span> **Permanent, Unlimited Storage**</li>
+                            <li class="flex items-center"><span class="text-[var(--cortive-accent)] mr-3">&#10003;</span> **Desktop App (Core Engine)**</li>
+                            <li class="flex items-center"><span class="text-[var(--cortive-accent)] mr-3">&#10003;</span> **Whole-System Capture**</li>
+                            <li class="flex items-center"><span class="text-[var(--cortive-accent)] mr-3">&#10003;</span> **AI-Powered Semantic Search**</li>
+                            <li class="flex items-center"><span class="text-[var(--cortive-accent)] mr-3">&#10003;</span> **The `@method` Universal Recall**</li>
+                            <li class="flex items-center"><span class="text-[var(--cortive-accent)] mr-3">&#10003;</span> **End-to-End Encrypted Sync**</li>
+                        </ul>
+                        <a href="#" class="mt-auto w-full bg-[var(--cortive-accent)] font-semibold py-3 rounded-xl hover:bg-[var(--cortive-accent-hover)] transition-colors">Join the Waitlist</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="py-20 scroll-mt-20">
+            <div class="container mx-auto px-6 text-center">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4">End the Chaos. Start Creating.</h3>
+                <p class="text-lg text-[var(--cortive-text-secondary)] max-w-2xl mx-auto mb-8">Join the waitlist for the exclusive Founder's Edition. Get lifetime access and help shape the future of personal knowledge management.</p>
+                <a href="#" class="bg-[var(--cortive-accent)] text-white font-bold px-8 py-4 rounded-2xl text-lg hover:bg-[var(--cortive-accent-hover)] transition-colors shadow-md">Get on the List</a>
+            </div>
+        </section>
+
+        <footer class="bg-[var(--cortive-surface)] border-t border-gray-200">
+            <div class="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <p class="text-sm text-[var(--cortive-text-secondary)]">&copy; 2025 Cortive. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="https://x.com/CortiveAi" class="text-sm text-[var(--cortive-text-secondary)] hover:text-[var(--cortive-accent)]">X / Twitter</a>
+                    <a href="#" class="text-sm text-[var(--cortive-text-secondary)] hover:text-[var(--cortive-accent)]">Privacy</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
+
