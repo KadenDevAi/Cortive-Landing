@@ -3,151 +3,940 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cortive - Stop Organizing. Start Remembering.</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Cortive - The Switzerland of Personal Knowledge</title>
     <style>
-        html { scroll-behavior: smooth; }
-        body, html {
-            font-family: 'Inter', sans-serif;
-            background-color: #f2e8dc; /* cortive-bg */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .cortive-landing-page {
-            --cortive-bg: #f2e8dc;
-            --cortive-surface: #faf3ea;
-            --cortive-text-primary: #2f2f2f;
-            --cortive-text-secondary: #4b4b4b;
-            --cortive-accent: #d45f04;
-            --cortive-accent-hover: #b44c03;
+
+        :root {
+            --obsidian: #1A1A1A;
+            --alabaster: #F5F5F5;
+            --geneva-blue: #4A90E2;
+            --slate: #888388;
+            --graphite: #333333;
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--obsidian);
+            color: var(--alabaster);
+            line-height: 1.6;
+        }
+
+        /* Navigation - Sticky */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--graphite);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--geneva-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--alabaster);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--geneva-blue);
+        }
+
+        .cta-button {
+            background: var(--geneva-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #3a7bd5;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(74, 144, 226, 0.3);
+        }
+
+        /* Hero Area */
+        .hero {
+            padding: 8rem 2rem 6rem;
+            background: linear-gradient(135deg, var(--obsidian) 0%, var(--graphite) 100%);
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(74, 144, 226, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--alabaster);
+        }
+
+        .hero .problem-statement {
+            color: var(--slate);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .primary-cta {
+            background: var(--geneva-blue);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .secondary-cta {
+            background: transparent;
+            color: var(--geneva-blue);
+            border: 2px solid var(--geneva-blue);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .hero-visual {
+            position: relative;
+            z-index: 1;
+            background: var(--graphite);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .mockup-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, var(--graphite), var(--slate));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--alabaster);
+            font-size: 1.2rem;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--alabaster);
+        }
+
+        .benefits-subtitle {
+            color: var(--slate);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            background: var(--graphite);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--geneva-blue);
+            border-radius: 12px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .benefit-card h4 {
+            color: var(--alabaster);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card p {
+            color: var(--slate);
+            line-height: 1.6;
+        }
+
+        /* How it Works Section */
+        .how-it-works {
+            padding: 6rem 2rem;
+            background: var(--graphite);
+        }
+
+        .how-it-works-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--alabaster);
+        }
+
+        .how-it-works-subtitle {
+            color: var(--geneva-blue);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 600;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: var(--obsidian);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            text-align: left;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 2rem;
+            background: var(--geneva-blue);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .step-card h4 {
+            color: var(--geneva-blue);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .step-card p {
+            color: var(--slate);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--alabaster);
+        }
+
+        .pricing-subtitle {
+            color: var(--slate);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--graphite);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            background: var(--geneva-blue);
+            color: white;
+            transform: scale(1.05);
+            border-color: var(--geneva-blue);
+        }
+
+        .pricing-card.featured .price {
+            color: white;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--alabaster);
+        }
+
+        .pricing-card.featured h3 {
+            color: white;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--geneva-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-period {
+            color: var(--slate);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-card.featured .price-period {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: var(--slate);
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .pricing-card.featured .pricing-features li {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--geneva-blue);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .pricing-card.featured .pricing-features li::before {
+            color: white;
+        }
+
+        .pricing-cta {
+            background: var(--geneva-blue);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: white;
+            color: var(--geneva-blue);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 2rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--alabaster);
+        }
+
+        .faq-item {
+            background: var(--graphite);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            color: var(--alabaster);
+            padding: 1.5rem;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(74, 144, 226, 0.1);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--slate);
+            display: none;
+            line-height: 1.6;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-question .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            padding: 6rem 2rem;
+            background: var(--geneva-blue);
+            text-align: center;
+            color: white;
+        }
+
+        .final-cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .final-cta .cta-button {
+            background: white;
+            color: var(--geneva-blue);
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--graphite);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--geneva-blue);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section a {
+            color: var(--slate);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--geneva-blue);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--slate);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 1rem 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .benefits-grid,
+            .steps-grid,
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .section {
+                padding: 4rem 1rem;
+            }
+            
+            .benefits h2,
+            .how-it-works h2,
+            .pricing h2,
+            .faq h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .primary-cta,
+            .secondary-cta {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+            }
         }
     </style>
-    <script async src="https://www.googagmanager.com/gtag/js?id=G-M85L6EP21M"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-M85L6EP21M');
-    </script>
 </head>
-<body class="bg-[var(--cortive-bg)] text-[var(--cortive-text-primary)] antialiased">
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Cortive</div>
+            <ul class="nav-links">
+                <li><a href="#benefits">How it works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="#pricing" class="cta-button">Get Started</a>
+        </div>
+    </nav>
 
-    <div class="cortive-landing-page">
-
-        <header class="sticky top-0 z-50 bg-[var(--cortive-bg)]/80 backdrop-blur-md">
-            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-                <h1 class="text-3xl font-bold text-[var(--cortive-text-primary)]">Cortive</h1>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#philosophy" class="text-[var(--cortive-text-secondary)] hover:text-[var(--cortive-accent)] transition-colors">Philosophy</a>
-                    <a href="#offer" class="text-[var(--cortive-text-secondary)] hover:text-[var(--cortive-accent)] transition-colors">The Offer</a>
-                    <a href="#faq" class="text-[var(--cortive-text-secondary)] hover:text-[var(--cortive-accent)] transition-colors">FAQ</a>
-                </div>
-                <a href="https://tally.so/r/meVKvJ" target="_blank" class="bg-[var(--cortive-accent)] text-white font-semibold px-5 py-2 rounded-xl hover:bg-[var(--cortive-accent-hover)] transition-colors shadow-sm">Join Waitlist</a>
-            </nav>
-        </header>
-
-        <section class="text-center py-20 md:py-28">
-            <div class="container mx-auto px-6">
-                <p class="text-lg md:text-xl text-[var(--cortive-text-secondary)] max-w-3xl mx-auto mb-4">We left filing cabinets behind, only to recreate the same chaos in our digital world.</p>
-                <h2 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-4">Stop Organizing. Start Remembering.</h2>
-                <p class="text-lg md:text-xl text-[var(--cortive-text-secondary)] max-w-3xl mx-auto mb-8">Cortive is your private digital cortex. It turns the chaos of scattered notes, links, and files into a unified, intelligent library you can access instantly—from anywhere on your computer.</p>
-                <a href="https://tally.so/r/meVKvJ" target="_blank" class="bg-[var(--cortive-accent)] text-white font-bold px-8 py-4 rounded-2xl text-lg hover:bg-[var(--cortive-accent-hover)] transition-colors shadow-md">Secure Your Spot in The Founder's Circle</a>
-                <p class="text-sm text-[var(--cortive-text-secondary)]/80 mt-4 font-semibold">Join the waitlist for a one-time $50 lifetime deal, exclusively for our first 100 members.</p>
+    <!-- Hero Area -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The last generation gave us the tools to create digital chaos. This generation needs a tool to manage it.</h1>
+            <p class="problem-statement">Your best ideas are trapped in browser tabs, buried in notes, lost in screenshots, and forgotten on clipboards. Cortive is the Switzerland of Personal Knowledge—a private, local-first memory engine that transforms scattered information into instantly searchable intelligence.</p>
+            <div class="hero-ctas">
+                <a href="#pricing" class="primary-cta">Join First 100</a>
+                <a href="#benefits" class="secondary-cta">See How It Works</a>
             </div>
-        </section>
-        
-        <section id="philosophy" class="py-16 bg-[var(--cortive-surface)] scroll-mt-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                   <h3 class="text-3xl font-bold mb-4">Your Knowledge is Trapped.</h3>
-                   <p class="text-lg text-[var(--cortive-text-secondary)] max-w-3xl mx-auto">Your best ideas are scattered. They're held hostage by two outdated and non private philosophies: the "Walled Garden" and the "Cloud-First AI."</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <div class="rounded-2xl border border-gray-300 p-6">
-                        <h4 class="text-xl font-semibold mb-2">The "Walled Garden" Apps (Notion, etc.)</h4>
-                        <p class="text-[var(--cortive-text-secondary)]">Powerful destinations for creating notes, but they are terrible at unifying the knowledge that lives <span class="font-semibold">outside</span> their walls. They are another silo, not a solution to the chaos.</p>
-                    </div>
-                    <div class="rounded-2xl border border-gray-300 p-6">
-                        <h4 class="text-xl font-semibold mb-2">The "Cloud-First" AIs (Claude, etc.)</h4>
-                        <p class="text-[var(--cortive-text-secondary)]">Powerful automation tools, but they require you to send your private data to their servers. This is a non-starter for sensitive, personal knowledge.</p>
-                    </div>
-                </div>
-                <div class="text-center mt-8">
-                     <p class="text-lg text-[var(--cortive-text-primary)] max-w-3xl mx-auto font-semibold">Cortive's approach is different. We are not another destination. We are a private, local-first "Memory Engine" that sits on your computer and unifies the context from all your other tools.</p>
-                </div>
+        </div>
+        <div class="hero-visual">
+            <div class="mockup-placeholder">
+                Product Screenshot/Video
+                <br>Coming Soon
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="py-20">
-            <div class="container mx-auto px-6 text-center">
-                <h3 class="text-3xl font-bold mb-4">See The "Aha!" Moment.</h3>
-                <p class="text-lg text-[var(--cortive-text-secondary)] max-w-3xl mx-auto mb-12">Watch the 60-second demo to see how Cortive unifies web captures, local notes, and clipboard content into one instantly searchable library.</p>
-                <div class="max-w-4xl mx-auto bg-gray-900 rounded-2xl shadow-2xl aspect-video flex items-center justify-center border-4 border-gray-300">
-                    <p class="text-white text-2xl font-semibold">[ Demo Coming Soon ]</p>
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="benefits-container">
+            <h2>Benefits</h2>
+            <p class="benefits-subtitle">Cortive isn't another destination for your notes. It's a private Memory Engine that unifies context from all your tools.</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"></div>
+                    <h4>Never Lose Information Again</h4>
+                    <p>Everything you capture becomes instantly searchable. Find any piece of information in under 200ms across 10,000+ items.</p>
                 </div>
-            </div>
-        </section>
-
-        <section id="offer" class="py-20 bg-[var(--cortive-surface)] scroll-mt-20">
-            <div class="container mx-auto px-6 text-center">
-                <h3 class="text-3xl font-bold mb-4">The Founder's Edition: An Unfair Advantage.</h3>
-                <p class="text-lg text-[var(--cortive-text-secondary)] max-w-2xl mx-auto mb-12">This is a one-time offer, exclusively for the first 100 people who believe in the mission. Secure a lifetime license to Cortive Pro for a single payment.</p>
-                <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 flex flex-col shadow-lg text-left border border-gray-200">
-                    <h4 class="text-2xl font-semibold mb-2 text-center">What's Included in the Lifetime Deal</h4>
-                    <p class="text-center text-[var(--cortive-text-secondary)] mb-6">You get every feature of the "Indie Cortive" paid MVP, plus all future Pro updates, forever.</p>
-                     <ul class="space-y-3 mb-8 text-[var(--cortive-text-primary)]">
-                        <li class="flex items-start"><span class="text-[var(--cortive-accent)] mr-3 mt-1">&#10003;</span> <div><span class="font-semibold">Permanent, Unlimited Storage:</span> All captures are stored locally on your machine, forever.</div></li>
-                        <li class="flex items-start"><span class="text-[var(--cortive-accent)] mr-3 mt-1">&#10003;</span> <div><span class="font-semibold">Flawless Web Capture:</span> A rock-solid browser extension to save articles and text selections.</div></li>
-                        <li class="flex items-start"><span class="text-[var(--cortive-accent)] mr-3 mt-1">&#10003;</span> <div><span class="font-semibold">Whole-System Capture:</span> Grab ideas from anywhere with global hotkeys for Clipboard and Screenshot (with OCR) capture.</div></li>
-                        <li class="flex items-start"><span class="text-[var(--cortive-accent)] mr-3 mt-1">&#10003;</span> <div><span class="font-semibold">"Watched Folders" for Local Notes:</span> Automatically index your existing notes from folders like your Obsidian vault.</div></li>
-                        <li class="flex items-start"><span class="text-[var(--cortive-accent)] mr-3 mt-1">&#10003;</span> <div><span class="font-semibold">Lightning-Fast Keyword Search:</span> Search the full text of everything you've ever saved in under 200ms.</div></li>
-                     </ul>
-                    <div class="text-center mt-4">
-                        <p class="text-sm font-semibold text-[var(--cortive-text-secondary)] mb-4">Platform: Windows 10/11</p>
-                        <p class="text-5xl font-bold">$50 <span class="text-lg font-normal text-gray-500">one-time payment</span></p>
-                        <a href="https://tally.so/r/meVKvJ" target="_blank" class="mt-6 block w-full bg-[var(--cortive-accent)] text-white font-semibold py-3 rounded-xl hover:bg-[var(--cortive-accent-hover)] transition-colors">Join the Waitlist (100 Spots Only)</a>
-                    </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"></div>
+                    <h4>100% Private & Local</h4>
+                    <p>Your data never leaves your machine. No cloud sync, no tracking, no surveillance. Just your knowledge, supercharged.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"></div>
+                    <h4>Capture Everything Instantly</h4>
+                    <p>Web selections, full pages, clipboard content, screenshots with OCR, and your existing notes - all unified in one place.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"></div>
+                    <h4>Break Down Information Silos</h4>
+                    <p>Stop jumping between apps. Cortive connects knowledge from everywhere into a single, intelligent search layer.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"></div>
+                    <h4>Built for Knowledge Workers</h4>
+                    <p>Designed for professionals who need compliance, privacy, and instant access to their scattered digital knowledge.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"></div>
+                    <h4>Foundation for AI Agents</h4>
+                    <p>Get ready for the future of private, personal AI assistants built on your own knowledge base.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="faq" class="py-20 scroll-mt-20">
-            <div class="container mx-auto px-6 max-w-3xl">
-                <h3 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h3>
-                <div class="space-y-8">
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2">Why a lifetime deal?</h4>
-                        <p class="text-[var(--cortive-text-secondary)]">I'm a solo founder, and my first priority is to build a community of committed users who believe in the vision. The Founder's Circle isn't just a group of customers; you are my most valued advisors. This lifetime offer is designed to reward that early belief and build a strong foundation for the future.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2">What happens after the 100 spots are filled?</h4>
-                        <p class="text-[var(--cortive-text-secondary)]">Once the 100 Founder's Edition licenses are sold, they are gone forever. Cortive will then move to a standard monthly/annual subscription model for all new users to ensure a sustainable business that can be supported and improved for years to come.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2">Why isn't Cortive open-source?</h4>
-                        <p class="text-[var(--cortive-text-secondary)]">This is a strategic decision based on focus and sustainability. As a solo founder, my mission is to build a polished and stable product as quickly as possible. Open-sourcing a project correctly requires a massive overhead in community management that would slow down core development. To ensure Cortive has a long-term future with dedicated support, it needs a viable business model from day one. Trust is built on verifiable user control: your data never leaves your machine and is stored in a standard SQLite file you can see and access at any time.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2">When is the Mac version coming?</h4>
-                        <p class="text-[var(--cortive-text-secondary)]">The "Founder's Edition" launch is for Windows. A native macOS version is our highest priority post-launch. Revenue from the Founder's Circle will be directly reinvested into accelerating the development of the Mac version.</p>
-                    </div>
+    <!-- How it Works Section -->
+    <section class="how-it-works">
+        <div class="how-it-works-container">
+            <h2>How it works?</h2>
+            <p class="how-it-works-subtitle">Get started with Cortive in 3 simple steps</p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>Download & Install</h4>
+                    <p>Download Cortive for Windows 10/11. Apple support coming soon. Setup takes less than 2 minutes with zero configuration required.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>Install Browser Extension</h4>
+                    <p>Add our browser extension to capture web content. Highlight text or save full pages - the extension sends everything to your desktop app automatically. You can also search your web captures directly from the browser.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>Search & Discover</h4>
+                    <p>The desktop app handles all processing, indexing, and search. Find anything instantly with natural language queries - all happening locally on your machine.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer class="bg-[var(--cortive-surface)] border-t border-gray-200">
-            <div class="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-                <p class="text-sm text-[var(--cortive-text-secondary)]">&copy; 2025 Cortive. All rights reserved.</p>
-                <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="https://x.com/CortiveAi" target="_blank" class="text-sm text-[var(--cortive-text-secondary)] hover:text-[var(--cortive-accent)]">X / Twitter</a>
-                    <a href="#" class="text-sm text-[var(--cortive-text-secondary)] hover:text-[var(--cortive-accent)]">Privacy</a>
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <h2>Pricing - Why to buy/How it helps</h2>
+            <p class="pricing-subtitle">Choose the plan that fits your needs. Start with our Founder's Circle offer for lifetime access.</p>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">Free</div>
+                    <div class="price-period">browser extension only</div>
+                    <ul class="pricing-features">
+                        <li>Browser extension</li>
+                        <li>Basic web capture</li>
+                        <li>Limited storage</li>
+                        <li>Community support</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Coming Soon</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Founder's Circle</h3>
+                    <div class="price">$50</div>
+                    <div class="price-period">one-time payment</div>
+                    <ul class="pricing-features">
+                        <li>Everything in Advanced</li>
+                        <li>Lifetime access (normally $15/month)</li>
+                        <li>Direct input on features</li>
+                        <li>First access to Local AI Layer</li>
+                        <li>Founding member status</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Secure Your Spot</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Advanced</h3>
+                    <div class="price">$15</div>
+                    <div class="price-period">/month</div>
+                    <ul class="pricing-features">
+                        <li>Desktop app + extension</li>
+                        <li>All capture methods</li>
+                        <li>Unlimited search & storage</li>
+                        <li>Advanced OCR</li>
+                        <li>Future Apple support</li>
+                    </ul>
+                    <div style="color: var(--slate); font-size: 0.9rem; font-style: italic; margin-bottom: 1rem;">*More features coming</div>
+                    <a href="#" class="pricing-cta">Coming Soon</a>
                 </div>
             </div>
-        </footer>
+        </div>
+    </section>
 
-    </div>
-</body>
-</html>
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How does local-first actually work?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Cortive runs entirely on your Windows 10/11 computer using local AI models and databases. Nothing is sent to external servers - all processing, indexing, and search happens locally for complete privacy. Your data stays on your machine, always.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What platforms does Cortive support?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Currently available for Windows 10 and Windows 11. Apple/macOS support is planned for the future. We're focusing on delivering the best possible experience on Windows first before expanding to other platforms.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How is this different from Obsidian or Notion?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Cortive doesn't compete with your note-taking apps - it enhances them. While Obsidian and Notion are creation tools, Cortive is a unified search and memory layer that captures knowledge from everywhere, not just one app. It's the missing piece that connects all your scattered information.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What happens after the first 100 members?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Cortive will transition to a $15/month subscription model. Founder's Circle members keep lifetime access and continue to have input on development priorities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="final-cta-container">
+            <h2>Ready to Organize Your Digital Chaos?</h2>
+            <p>Join the first 100 visionaries building the future of private, personal AI</p>
+            <a href="#pricing" class="cta-button">Secure Your Founder's Spot</a>
+        </div>
+    </section>
 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <a href="#benefits">Features</a>
+                    <a href="#pricing">Pricing</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Security</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <a href="#">Subscribe</a>
+                    <a href="#">Updates</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cortive. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = element.querySelector('.faq-icon');
+            const isOpen = answer.classList.contains('active');
+            
+            // Close all FAQ answers first
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const ans = item.querySelector('.faq-answer');
+                const btn = item.querySelector('.faq-question');
+                const ic = item.querySelector('.faq-icon');
+                
+                ans.classList.remove('active');
+                btn.classList.remove('active');
+                ic.textContent = '+';
+            });
+            
+            // Open clicked answer if it wasn't already open
+            if (!isOpen) {
+                answer.classList.add('active');
+                element.classList.add('active');
+                icon.textContent = '×';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
